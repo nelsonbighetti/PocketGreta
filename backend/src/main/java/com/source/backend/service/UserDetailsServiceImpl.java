@@ -5,6 +5,7 @@ import com.source.backend.model.Account;
 import com.source.backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +19,9 @@ import java.util.Optional;
 
 import static java.util.Collections.singletonList;
 
-@AllArgsConstructor
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
+    @Autowired
     private UserRepository userRepository;
 
     @Override

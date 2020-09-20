@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,7 +28,7 @@ public class AccountEndpoint {
     private AccountService accountService;
 
     @ResponseBody
-    @GetMapping("/{username}")
+    @RequestMapping("/{username}")
     private ResponseEntity<AccountInfoDto> getAccountInfo(@PathVariable String username){
         String usernameCheck = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         if (usernameCheck.equals(username)){

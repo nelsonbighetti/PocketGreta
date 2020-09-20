@@ -2,6 +2,7 @@ package com.source.backend.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,9 +21,12 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
     @Autowired
     private JwtProvider jwtProvider;
+
     @Autowired
+    @org.springframework.beans.factory.annotation.Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
     @Override
@@ -30,7 +34,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
             String jwt = getJwtFromRequest(request);
+            if(jwt == null) {
 
+            }
             if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
                 String username = jwtProvider.getUsernameFromJwt(jwt);
 

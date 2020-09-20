@@ -8,4 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class SpringBeans {
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new com.source.backend.service.UserDetailsServiceImpl();
+    }
 }
