@@ -1,0 +1,70 @@
+from flask_cors import CORS, cross_origin
+from flask import Flask, request, abort, jsonify
+import requests
+import json
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+uri = "457f5a38fd2e.ngrok.io"
+
+@app.errorhandler(404)
+def resource_not_found(e):
+    return jsonify(error=str(e)), 404
+
+@app.route('/rest/auth/login', methods=['POST'])
+def login():
+    path = "/rest/auth/login"
+    creds = json.loads(request.data.decode("utf-8"))
+
+    s = requests.Session()
+    r = s.post('http://' + uri + path, json={"email": creds['email'], "password": creds['password']})
+    if(r.status_code!=200):
+        abort(404, description="Resource not found")
+    payload = json.loads(r.content.decode("utf-8"))
+    cookie = s.cookies.get_dict(uri)
+    payload['cookie_sessionid'] = cookie['JSESSIONID']
+    return payload
+
+@app.route('/rest/acc/', methods=['POST', 'GET'])
+def get_rating():
+    payload = json.loads(request.data.decode("utf-8"))
+    headers = {
+        "Authorization" : "Bearer "+payload['authenticationToken'],
+        "Cookie" : "JSESSIONID="+payload['cookie_sessionid']+"; Path=/; Domain=."+uri+"; HttpOnly;"
+    }
+
+    resp = requests.post('http://' + uri + "/rest/acc/"+payload['username'], headers=headers)
+    if (resp.status_code != 200):
+        abort(404, description="Resource not found")
+    return resp.json()
+
+@app.route('/rest/auth/signup', methods=['POST', 'GET'])
+def register():
+    creds = json.loads(request.data.decode("utf-8"))
+
+    resp = requests.post('http://' + uri + "/rest/auth/signup", json={"username": creds['username'], "email": creds['email'], "password": creds['password']})
+
+    if (resp.status_code != 200):
+        abort(404, description="Invalid data")
+
+    if(resp.content.decode('utf-8')!='User Registration Successful'):
+        abort(404, description="Invalid data")
+
+
+    return resp.content.decode('utf-8')
+
+@app.route('/rest/refreshToken', methods=['POST', 'GET'])
+def refresh_token():
+    data = json.loads(request.data.decode("utf-8"))
+
+    resp = requests.post('http://' + uri + "/rest/auth/refresh/token", json={"username": data['username'], "refreshToken": data['refreshToken']})
+
+    if (resp.status_code != 200):
+        abort(404, description="Invalid data")
+
+    return resp.content.decode('utf-8')
+
+
+if __name__ == '__main__':
+    app.run(host= '0.0.0.0',debug=True)

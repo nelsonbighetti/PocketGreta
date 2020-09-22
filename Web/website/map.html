@@ -1,0 +1,50 @@
+<head>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="map" ></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="application/javascript" src="scripts/profile.js"></script>
+    <div id="over_map">
+        <img src="http://localhost:5000/resources/images/logo.png" id="logo" alt="">
+        <div id="profile" style="visibility: hidden"></div>
+        <div id="rating" style="visibility: hidden"></div>
+        <img src="http://localhost/resources/icons/logout.png" id="logout" onclick="logout()" style="visibility: hidden" alt="Logout"/>
+
+        <div id="login_btn" onclick="displayLoginPopup()">
+            <p>Login >></p>
+        </div>
+        <div id="register_btn" onclick="displayRegisterPopup()">
+            <p>Register >></p>
+        </div>
+
+        <div class = "popup" id="login_popup" style="visibility: hidden ">
+            <p>Email:</p>
+            <input type = "text" id = "login_popup_email">
+            <p>Pass:</p>
+            <input type="password" id = "login_popup_password">
+            <button class="btn" onclick="dologin()">LOGIN</button>
+            <div class="error_popup" id="login_error" style="visibility: hidden"><p>Invalid credentials</p></div>
+        </div>
+        <div class = "popup" id="register_popup" style="visibility: hidden"><p>Register here</p>
+            <p>Login:</p>
+            <input type = "text" id = "register_popup_login">
+            <p>Email:</p>
+            <input type = "text" id = "register_popup_email">
+            <p>Pass:</p>
+            <input type="password" id = "register_popup_password">
+            <button class="btn" onclick="doregister()">LOGIN</button>
+            <div class="error_popup" id="register_error" style="visibility: hidden"><p>Invalid data</p></div>
+        </div>
+    </div>
+    <div id="dimmer" style="visibility: hidden" onclick="closePopups()"></div>
+    <script>checkLogin()</script>
+</div>
+
+
+<script type="application/javascript" src="scripts/maps_api.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByATVtSnqA-Wj4Ue2_Wt8WMqk8uR1zxmg&callback=initMap"></script>
+<script type="application/javascript" src="scripts/client.js"></script>
+</body>
