@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#wrapper { position: relative; }
+#map{
+    height: 100%;
+    width: 100%;
+    z-index: 90;
+}
+#over_map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #ff0000;  z-index: 99;
+}
+#logo{
+    top: 0;
+    left: 20px;
+    display: block;
+    position: absolute;
+    width: auto;
+    height: 40px;
+}
+#profile{
+    display: block;
+    position: absolute;
+    background-color: #c7cd12;
+    width: 300px;
+    height: 40px;
+    top: 0;
+    right: 110px;
+}
+#rating{
+    display: block;
+    position: absolute;
+    background-color: #e00c99;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 60px;
+}
+#logout{
+    display: block;
+    position: absolute;
+    background-color: #00ffff;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+}
+#login_btn{
+    display: block;
+    position: absolute;
+    background-color: yellow;
+    width: 80px;
+    height: 40px;
+    top: 0;
+    right: 100px;
+    cursor: pointer;
+}
+#register_btn{
+    display: block;
+    position: absolute;
+    background-color: blueviolet;
+    width: 80px;
+    height: 40px;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+}
+.popup{
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 200px;
+    height: 300px;
+    width: 400px;
+    display: block;
+    position: absolute;
+    background-color: beige;
+}
+
+.error_popup{
+    display: block;
+    background-color: red;
+    width: 200px;
+    height: 20px;
+}
+
+#profile_btn{
+    width: 40px;
+    height: 40px;
+}
+
+#dimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 255, 4, 0.52);  z-index: 90;
+}
