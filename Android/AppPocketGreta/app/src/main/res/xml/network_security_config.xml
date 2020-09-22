@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">http://457f5a38fd2e.ngrok.io/rest/auth/signup</domain>
+        <domain includeSubdomains="true">457f5a38fd2e.ngrok.io/rest/auth/signup</domain>
+        <domain includeSubdomains="true">http://457f5a38fd2e.ngrok.io</domain>
+        <domain includeSubdomains="true">457f5a38fd2e.ngrok.io</domain>
+        <domain includeSubdomains="true">http://457f5a38fd2e.ngrok.io/</domain>
+    </domain-config>
+</network-security-config>
