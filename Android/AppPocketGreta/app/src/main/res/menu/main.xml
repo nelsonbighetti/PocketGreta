@@ -4,16 +4,19 @@
     <item
         android:id="@+id/action_login"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_action_login"
         android:title="@string/action_login"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_registration"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_action_logup"
         android:title="@string/action_registration"
-        app:showAsAction="never" />
+        app:showAsAction="always"/>
     <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_action_logout"
         android:title="@string/action_logout"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>

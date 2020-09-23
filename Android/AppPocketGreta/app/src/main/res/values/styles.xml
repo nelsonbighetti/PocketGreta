@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/bitterSweat</item>
+        <item name="colorPrimary">#3dc195</item>
+        <item name="colorPrimaryDark">#76f4c6</item>
+        <item name="colorAccent">#009067</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -20,8 +20,8 @@
     <style name="RedButton" parent="@style/Widget.AppCompat.Button.Colored">
 
         <item name="background">@drawable/btn_rounded_corner</item>
-        <item name="colorButtonNormal">@color/bitterSweat</item>
-        <item name="colorControlHighlight">#673ab7</item>
+        <item name="colorButtonNormal">#3dc195</item>
+        <item name="colorControlHighlight">#009067</item>
     </style>
 
 </resources>
