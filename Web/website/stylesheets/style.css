@@ -26,41 +26,23 @@ body{
 }
 #logo{
     top: 0;
-    left: 20px;
+    left: 0;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     display: block;
     position: absolute;
     width: auto;
     height: 40px;
 }
 
-#profile{
+#logout_btn{
+    right: 0;
     display: block;
     position: absolute;
-    background-color: #c7cd12;
-    width: 300px;
-    height: 40px;
-    top: 0;
-    right: 110px;
+    border-radius: 50px;
+    background-color: #d81b60;
 }
-#rating{
-    display: block;
-    position: absolute;
-    background-color: #e00c99;
-    width: 40px;
-    height: 40px;
-    top: 0;
-    right: 60px;
-}
-#logout{
-    display: block;
-    position: absolute;
-    background-color: #00ffff;
-    width: 40px;
-    height: 40px;
-    top: 0;
-    right: 10px;
-    cursor: pointer;
-}
+
 #login_btn{
     display: block;
     position: absolute;
@@ -216,4 +198,113 @@ body{
 #login_popup_btn{
     margin-top: -50px;
     margin-left: 195px;
+}
+
+
+#profile{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 417px;
+    width: 200px;
+    height: 36px;
+    color: black;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #00bcd4;
+}
+
+#profile:hover{
+    background-color: #62efff;
+    transition: all 0.4s ease 0s;
+}
+
+#email{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 206px;
+    width: 200px;
+    height: 36px;
+    color: black;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #cddc39;
+    text-align: center;
+    line-height: 36px;
+}
+
+#email:hover{
+    background-color: #ffffa8;
+    transition: all 0.4s ease 0s;
+}
+
+
+#rating{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 45px;
+    width: 150px;
+    height: 36px;
+    background-color: #ffeb3b;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    text-align: center;
+    line-height: 36px;
+    cursor: pointer;
+}
+
+#rating:hover{
+    background-color: #ffffa8;
+    transition: all 0.4s ease 0s;
+}
+
+.inner_icon{
+    display: inline-block;
+    position: absolute;
+    border-radius: 36px;
+    background-color: rgba(78, 78, 78, 0.15);
+    left: 0;
+    width: 36px;
+    height: 36px;
+    color: black;
+    object-fit: contain;
+}
+
+#profile_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    margin-top: 0px;
+    font-size: x-small;
+    left: 26px;
+}
+
+#email_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: x-small;
+    margin-top: 0px;
+    left: 36px;
+}
+
+
+#rating_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: x-small;
+    margin-top: 0px;
+    left: 10px;
 }

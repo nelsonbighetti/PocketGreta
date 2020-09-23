@@ -10,10 +10,19 @@
     <script type="application/javascript" src="scripts/profile.js"></script>
     <div id="over_map">
         <img src="http://localhost:5000/resources/images/logo.png" id="logo" alt="">
-        <div id="profile" style="visibility: hidden"></div>
-        <div id="rating" style="visibility: hidden"></div>
-        <img src="http://localhost:5000/resources/icons/logout.png" id="logout" onclick="logout()" style="visibility: hidden" alt="Logout"/>
-
+        <div id="profile" class="user_info" style="visibility: hidden">
+            <img src="http://localhost:5000/resources/icons/user.png" class="inner_icon">
+            <p id="profile_inner_text">Vasyan lol qwwe</p>
+        </div>
+        <div id="email" class="user_info"  style="visibility: hidden">
+            <img src="http://localhost:5000/resources/icons/email.png" class="inner_icon">
+            <p id="email_inner_text">polar.vl@yandex.ru</p>
+        </div>
+        <div id="rating" class="user_info" style="visibility: hidden">
+            <img src="http://localhost:5000/resources/icons/rating.png" class="inner_icon">
+            <p id="rating_inner_text">231132123</p>
+        </div>
+        <img src="http://localhost:5000/resources/icons/logout.png" id="logout_btn" onclick="logout()" class="toolbar_btn" style="visibility: hidden"/>
         <img src="http://localhost:5000/resources/icons/login.png" id="login_btn" class="toolbar_btn" onclick="displayLoginPopup()">
         <img src="http://localhost:5000/resources/icons/register.png" id="register_btn" class="toolbar_btn" onclick="displayRegisterPopup()">
 
