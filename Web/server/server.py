@@ -1,6 +1,7 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, abort, jsonify
 from flask import send_file
+import cryptography
 import requests
 import json
 app = Flask(__name__)
@@ -73,6 +74,19 @@ def getMapObjects():
 
     return resp.content.decode('utf-8')
 
+@app.route('/', methods=['GET'])
+def index():
+    return send_file('./pages/index.html', mimetype='text/html')
+
+@app.route('/scripts/<string:name>', methods=['GET'])
+def get_script(name):
+    return send_file('./pages/scripts/'+name, mimetype='text/javascript')
+
+@app.route('/stylesheets/<string:name>', methods=['GET'])
+def get_styles(name):
+    return send_file('./pages/stylesheets/'+name, mimetype='text/css')
+
+
 @app.route('/resources/icons/<string:name>', methods=['GET'])
 def get_resource(name):
     return send_file('./resources/icons/'+name, mimetype='image/gif')
@@ -83,4 +97,4 @@ def get_image(name):
 
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0',debug=True)
+    app.run(host= '0.0.0.0', debug=True, ssl_context=('certs/localhost.crt', 'certs/localhost.key'))
