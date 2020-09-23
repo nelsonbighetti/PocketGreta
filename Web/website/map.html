@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
@@ -11,33 +12,73 @@
         <img src="http://localhost:5000/resources/images/logo.png" id="logo" alt="">
         <div id="profile" style="visibility: hidden"></div>
         <div id="rating" style="visibility: hidden"></div>
-        <img src="http://localhost/resources/icons/logout.png" id="logout" onclick="logout()" style="visibility: hidden" alt="Logout"/>
+        <img src="http://localhost:5000/resources/icons/logout.png" id="logout" onclick="logout()" style="visibility: hidden" alt="Logout"/>
 
-        <div id="login_btn" onclick="displayLoginPopup()">
-            <p>Login >></p>
-        </div>
-        <div id="register_btn" onclick="displayRegisterPopup()">
-            <p>Register >></p>
+        <img src="http://localhost:5000/resources/icons/login.png" id="login_btn" class="toolbar_btn" onclick="displayLoginPopup()">
+        <img src="http://localhost:5000/resources/icons/register.png" id="register_btn" class="toolbar_btn" onclick="displayRegisterPopup()">
+
+        <div class = "popup" id="login_popup" style="visibility: hidden">
+            <img src="http://localhost:5000/resources/images/recycle.png" class = "popup_cover">
+            <div class = "popup_inner">
+                <div id = "login_error" class="error_popup" style="visibility: hidden">
+                    <p>Login error. Check data and try again.</p>
+                </div>
+                <p style="margin-top: 25px">Login</p>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="E-Mail" id = "login_popup_email" type="text" class="validate">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Password" id = "login_popup_password" type="password" class="validate">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <button class="btn waves-effect waves-light" onclick="dologin()" id="login_popup_btn">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class = "popup" id="login_popup" style="visibility: hidden ">
-            <p>Email:</p>
-            <input type = "text" id = "login_popup_email">
-            <p>Pass:</p>
-            <input type="password" id = "login_popup_password">
-            <button class="btn" onclick="dologin()">LOGIN</button>
-            <div class="error_popup" id="login_error" style="visibility: hidden"><p>Invalid credentials</p></div>
+        <div class = "popup" id="register_popup" style="visibility: hidden">
+            <img src="http://localhost:5000/resources/images/recycle.png" class = "popup_cover">
+            <div class = "popup_inner">
+                <div id = "register_error" class="error_popup" style="visibility: hidden">
+                    <p>Register error. Check data and try again.</p>
+                </div>
+
+                <p style="margin-top: 25px">Register</p>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="Username" id = "register_popup_login" type="text" class="validate">
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="E-Mail" id = "register_popup_email" type="text" class="validate">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="password" placeholder="Password" id = "register_popup_password" class="validate">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <button class="btn waves-effect waves-light" onclick="doregister()" id="submit_btn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class = "popup" id="register_popup" style="visibility: hidden"><p>Register here</p>
-            <p>Login:</p>
-            <input type = "text" id = "register_popup_login">
-            <p>Email:</p>
-            <input type = "text" id = "register_popup_email">
-            <p>Pass:</p>
-            <input type="password" id = "register_popup_password">
-            <button class="btn" onclick="doregister()">LOGIN</button>
-            <div class="error_popup" id="register_error" style="visibility: hidden"><p>Invalid data</p></div>
-        </div>
+
     </div>
     <div id="dimmer" style="visibility: hidden" onclick="closePopups()"></div>
     <script>checkLogin()</script>

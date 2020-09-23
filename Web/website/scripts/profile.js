@@ -126,7 +126,6 @@ async function doregister() {
         }
     })
 
-    sendCreds()
 }
 
 function refreshToken(){
@@ -182,6 +181,14 @@ async function checkLogin() {
             }
         })
     }
+}
+
+function aux(){
+    setVisibility("login_btn", "hidden")
+    setVisibility("register_btn", "hidden")
+    setVisibility("profile", "visible")
+    setVisibility("rating", "visible")
+    setVisibility("logout", "visible")
 }
 
 function logout() {
