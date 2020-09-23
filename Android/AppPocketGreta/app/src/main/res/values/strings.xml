@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppPocketGreta</string>
+    <string name="app_name">Pocket Greta</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -48,4 +48,6 @@
     <string name="usercabbinet">My profile</string>
     <string name="your_name">Username</string>
     <string name="your_bonus">Your bonus:</string>
+    <string name="pswd">Confirm password</string>
+    <string name="ok">OK</string>
 </resources>
