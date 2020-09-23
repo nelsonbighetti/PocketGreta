@@ -1,5 +1,6 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, abort, jsonify
+from flask import send_file
 import requests
 import json
 app = Flask(__name__)
@@ -51,7 +52,6 @@ def register():
     if(resp.content.decode('utf-8')!='User Registration Successful'):
         abort(404, description="Invalid data")
 
-
     return resp.content.decode('utf-8')
 
 @app.route('/rest/refreshToken', methods=['POST', 'GET'])
@@ -64,6 +64,22 @@ def refresh_token():
         abort(404, description="Invalid data")
 
     return resp.content.decode('utf-8')
+
+@app.route('/rest/map/all', methods=['GET'])
+def getMapObjects():
+    resp = requests.get('http://' + uri + "/rest/map/all")
+    if (resp.status_code != 200):
+        abort(404, description="Invalid request")
+
+    return resp.content.decode('utf-8')
+
+@app.route('/resources/icons/<string:name>', methods=['GET'])
+def get_resource(name):
+    return send_file('./resources/icons/'+name, mimetype='image/gif')
+
+@app.route('/resources/images/<string:name>', methods=['GET'])
+def get_image(name):
+    return send_file('./resources/images/'+name, mimetype='image/gif')
 
 
 if __name__ == '__main__':

@@ -126,7 +126,6 @@ async function doregister() {
         }
     })
 
-    sendCreds()
 }
 
 function refreshToken(){
@@ -176,9 +175,11 @@ async function checkLogin() {
                 setVisibility("register_btn", "hidden")
                 setVisibility("profile", "visible")
                 setVisibility("rating", "visible")
-                setVisibility("logout", "visible")
-                document.getElementById('profile').innerHTML = '<p>'+response.data['username']+ ' (' + response.data['email'] + ')</p>';
-                document.getElementById('rating').innerHTML = '<p>'+response.data['bonuses']+'</p>';
+                setVisibility("email", "visible")
+                setVisibility("logout_btn", "visible")
+                document.getElementById('profile_inner_text').innerHTML = response.data['username'];
+                document.getElementById('rating_inner_text').innerHTML = response.data['bonuses'];
+                document.getElementById('email_inner_text').innerHTML = response.data['email'];
             }
         })
     }
@@ -195,5 +196,6 @@ function logout() {
     setVisibility("register_btn", "visible")
     setVisibility("profile", "hidden")
     setVisibility("rating", "hidden")
-    setVisibility("logout", "hidden")
+    setVisibility("logout_btn", "hidden")
+    setVisibility("email", "hidden")
 }
