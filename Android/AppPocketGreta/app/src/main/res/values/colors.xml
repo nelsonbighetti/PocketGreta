@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorPrimary2">#3dc195</color>
+    <color name="colorPrimaryDark2">#008062</color>
+   <!-- <color name="colorAccent">#03DAC5   #f57467</color>-->
+    <color name="bitterSweat"> #f57467</color>
+    <color name="teaGreen">#3dc195</color>
+    <color name="colorTrendingStart">#507b71</color>
+    <color name="colorTrendingEnd">#3dc195</color>
+    <color name="colorDivider">#d6d6d6</color>
+
+    <color name="colorPrimary">#507b71</color>
+    <color name="colorPrimaryDark">#3dc195</color>
+    <color name="colorAccent">#3dc195</color>
+    <color name="colordarky">#446961</color>
+
 </resources>

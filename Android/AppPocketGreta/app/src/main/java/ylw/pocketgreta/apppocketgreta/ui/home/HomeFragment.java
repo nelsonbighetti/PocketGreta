@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -64,13 +69,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        LatLng pp = new LatLng(59.986509, 30.348182);
-        MarkerOptions option = new MarkerOptions();
-        option.position(pp).title(
-                "Separate garbage collection").snippet("Будь лапочкой, разделяй мусор").
-                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_name));
-        map.addMarker(option);
-        map.moveCamera(CameraUpdateFactory.newLatLng(pp));
         map.setMyLocationEnabled(true);
         parsJSONfile();
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -81,50 +79,63 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         });
 
     }
-    public void onMapReadyPoint(long latitude, long longitude, String type, String subtype,
+    public void onMapReadyPoint(Double latitude, Double longitude, String type, String subtype,
                            String description, String details, int uid) {
         LatLng pp = new LatLng(latitude, longitude);
         MarkerOptions option = new MarkerOptions();
         option.position(pp).title(
                 type).snippet(description);
         switch (type){
-            case "trashbin":
-                option.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_name));
+            case "TRASHBIN":
+                option.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_trash));
+                map.addMarker(option);
+                break;
+            case "SHOP":
+                option.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_shop));
+                map.addMarker(option);
+                break;
+            case "EVENT":
+                option.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_event));
+                map.addMarker(option);
+                break;
+            default:
                 return;
-            case "shop":
-                return;
-            case "event":
-                return;
+
         }
     }
     public void parsJSONfile(){
-        String url = "";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        String url = "http://457f5a38fd2e.ngrok.io/rest/map/all";
+        AndroidNetworking.get("http://457f5a38fd2e.ngrok.io/rest/map/all")
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject employee = jsonArray.getJSONObject(i);
-                                long latitude = employee.getLong("latitude");
-                                long longitude = employee.getLong("longitude");
-                                String type = employee.getString("type");
-                                String subtype = employee.getString("subtype");
-                                String description = employee.getString("description");
-                                String details = employee.getString("details");
-                                int uid = employee.getInt("uid");
-                                onMapReadyPoint(latitude, longitude, type, subtype, description, details, uid);
+                    public void onResponse(JSONArray response) {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject employee = null;
+                            try {
+                                employee = response.getJSONObject(i);
+
+                            Double latitude = employee.getDouble("latitude");
+                            Double longitude = employee.getDouble("longitude");
+                            String type = employee.getString("type");
+                            String subtype = employee.getString("subtype");
+                            String description = employee.getString("descriptions");
+                            String details = employee.getString("details");
+                            int uid = employee.getInt("id");
+                            Log.d("JSON",type+subtype+description+details);
+
+                            onMapReadyPoint(latitude, longitude, type, subtype, description, details, uid);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
+
     }
 }
