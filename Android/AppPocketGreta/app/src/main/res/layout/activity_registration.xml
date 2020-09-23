@@ -70,12 +70,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="50dp"
         android:background="@color/colorAccent"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/Button_ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,10 +100,10 @@
     <TextView
         android:id="@+id/id_name"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
@@ -115,7 +113,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/enter_mail"
@@ -161,7 +159,7 @@
         android:layout_marginLeft="150dp"
         android:layout_marginEnd="150dp"
         android:layout_marginRight="150dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/lustria"
         android:gravity="center_horizontal"
         android:text="@android:string/ok"
@@ -188,6 +186,7 @@
         android:layout_width="105dp"
         android:layout_height="115dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/id_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
