@@ -53,7 +53,7 @@ function addObj(data){
             '<div class="info" style="text-align: center; display: block; overflow-wrap: break-word;">'+
             '<img src="'+'http://localhost:5000/resources/images/'+data["type"]+'.jpg'+'" width="200px" height="auto">'+
             '<br><br><address>'+data['details']+'</address>'+
-            '<h4>'+data['descriptions']+'</h4></div>'
+            '<p class="details_header">'+data['descriptions']+'</p></div>'
     });
 
     marker.addListener('click',function () {
