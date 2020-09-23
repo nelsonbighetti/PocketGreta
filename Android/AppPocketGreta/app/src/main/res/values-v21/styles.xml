@@ -5,4 +5,12 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="RedButton" parent="Widget.AppCompat.Button.Colored">
+        <!--
+          <item name="background">@drawable/btn_rounded_corner</item>
+          -->
+        <item name="colorButtonNormal">@color/bitterSweat</item>
+        <item name="colorControlHighlight">@color/bitterSweat</item>
+    </style>
 </resources>
