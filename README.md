@@ -24,4 +24,20 @@ The main task of the proposed concept of the application is the aggregation of t
 
 ### Installation
 #### Android
+1. Clone repository using Git.
+2. Go to PocketGreta\Android\AppPocketGreta\app\build\outputs\apk.
+3. Download apk on your device and run.
+##### OR
+1. Clone repository using Git.
+2. Open project in Android Studio.
+3. Built project.
+4. Run on emulator or real device.
+
 #### Web
+1. 
+2.
+3.
+4.
+5.
+
+### Usage
