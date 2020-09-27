@@ -8,7 +8,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-uri = "457f5a38fd2e.ngrok.io"
+uri = "176.119.157.59"
 
 @app.errorhandler(404)
 def resource_not_found(e):
