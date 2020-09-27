@@ -40,4 +40,22 @@ The main task of the proposed concept of the application is the aggregation of t
 4.
 5.
 
+### Deployment
+
+
 ### Usage
+#### Android
+ Firstly, you must register by pressing the button on the top right angle. Then you see the info of all separate waste collection points by pressing on any icon on the map.
+ Also, you can scan QR-code that was given you by organization interested in using secondary raw materials and get points for your contribution to the environment. The number of earned points you can see in your profile where you can get by side menu. 
+ ![](reports/imgs/android-register-page.jpg)
+ ![](reports/imgs/android-login-page.jpg)
+ ![](reports/imgs/android-side-menu.jpg)
+ ![](reports/imgs/android-pressed-point.jpg)
+ 
+ #### Web
+ Firstly, you must register by pressing the button on the top right angle. Then you see the info of all separate waste collection points by pressing on any icon on the map.
+ Also, you the number of pointed you earned by scanning QR-codes that was given you by organizations interested in using secondary raw materials on the top pannel. 
+ ![](reports/imgs/web-register-page.png)
+ ![](reports/imgs/web-login-page.png)
+ ![](reports/imgs/web-after-login-page.png)
+ ![](reports/imgs/web-pressed-point.png)
