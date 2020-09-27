@@ -88,13 +88,17 @@ public class AuthorizationService {
         String username = userOpt
                 .orElseThrow(() -> new UsernameNotFoundException("No user " +
                         "Found with email : " + loginRequest.getEmail()));
+        Optional<Account> accountOpt = userRepository.findByUsername(username);;
+        Account account = accountOpt
+                .orElseThrow(() -> new UsernameNotFoundException("No Account " +
+                        "Found with email : " + loginRequest.getEmail()));
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
-                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
+                .refreshToken(refreshTokenService.generateRefreshToken(account).getToken())
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
                 .username(username)
                 .build();

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.Instant;
 
 @Data
@@ -20,4 +21,6 @@ public class RefreshToken {
     private Long id;
     private String token;
     private Instant createdDate;
+    @ManyToOne
+    private Account account;
 }
