@@ -1,7 +1,6 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, abort, jsonify
 from flask import send_file
-import cryptography
 import requests
 import json
 app = Flask(__name__)
