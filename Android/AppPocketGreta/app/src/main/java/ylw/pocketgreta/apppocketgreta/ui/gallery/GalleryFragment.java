@@ -71,8 +71,7 @@ public class GalleryFragment extends Fragment {
                 bonusTextView.setText("Your bonuses");
                 usernameText.setText("Username");
                 String tokenAuth = singleton.getTokenAuth();
-                bonusServerData(username, tokenAuth);
-                bonusText.setText(String.valueOf(bonus));
+                bonus = bonusServerData(username, tokenAuth);
             }
         }
         else
@@ -90,8 +89,9 @@ public class GalleryFragment extends Fragment {
         });
         return root;
     }
-    void bonusServerData(String username, String tokenAuth) {
+    int bonusServerData(String username, String tokenAuth) {
         JSONObject jsonObject = new JSONObject();
+        final int[] bonusNum = new int[1];
         try {
             jsonObject.put("authenticationToken", tokenAuth);
             jsonObject.put("username", username);
@@ -106,7 +106,9 @@ public class GalleryFragment extends Fragment {
                     @Override
                     public void onResponse (JSONObject response) {
                         try {
-                            bonus = response.getInt("bonuses");
+                             bonus = response.getInt("bonuses");
+                            bonusText.setText(String.valueOf(bonus));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -116,7 +118,7 @@ public class GalleryFragment extends Fragment {
                         Log.d("Registration",error.toString());
                     }
                 });
-
+        return bonus;
     }
 
 }
