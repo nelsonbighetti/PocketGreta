@@ -35,7 +35,7 @@ function initMap() {
 function addObj(data){
     var latlng = new google.maps.LatLng(data["latitude"],data["longitude"]);
     var icon = {
-        url: 'https://176.119.157.59:5000/resources/icons/'+data["type"]+'.png',
+        url: 'https://postavtezachotpozhaluysta.ru/resources/icons/'+data["type"]+'.png',
         scaledSize: new google.maps.Size(30, 30),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(0, 0)
@@ -51,7 +51,7 @@ function addObj(data){
     var infoWindow = new google.maps.InfoWindow({
         content:'' +
             '<div class="info" style="text-align: center; display: block; overflow-wrap: break-word;">'+
-            '<img src="'+'https://176.119.157.59:5000/resources/images/'+data["type"]+'.jpg'+'" width="200px" height="auto">'+
+            '<img src="'+'https://postavtezachotpozhaluysta.ru/resources/images/'+data["type"]+'.jpg'+'" width="200px" height="auto">'+
             '<br><br><address>'+data['details']+'</address>'+
             '<p class="details_header">'+data['descriptions']+'</p></div>'
     });

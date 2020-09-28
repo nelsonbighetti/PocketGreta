@@ -74,7 +74,7 @@ async function loginCreds(email, password, userdriven){
         "password": password
     }
 
-    await axios.post('https://176.119.157.59:5000/rest/auth/login', params
+    await axios.post('https://postavtezachotpozhaluysta.ru/rest/auth/login', params
     ).catch(error => {
         if(userdriven){
             document.getElementById("login_error").style.visibility = "visible"
@@ -114,7 +114,7 @@ async function doregister() {
         "password": password
     }
 
-    await axios.post('https://176.119.157.59:5000/rest/auth/signup', params
+    await axios.post('https://postavtezachotpozhaluysta.ru/rest/auth/signup', params
     ).catch(error => {
         document.getElementById("register_error").style.visibility = "visible"
     }).then(response => {
@@ -136,7 +136,7 @@ function refreshToken(){
         "refreshToken": refreshToken
     }
 
-    axios.post('https://176.119.157.59:5000/rest/refreshToken', params
+    axios.post('https://postavtezachotpozhaluysta.ru/rest/refreshToken', params
     ).catch(error => {
         document.getElementById("register_error").style.visibility = "visible"
     }).then(response => {
@@ -163,7 +163,7 @@ async function checkLogin() {
             "cookie_sessionid": cookie_sessionid
         }
 
-        await axios.post('https://176.119.157.59:5000/rest/acc/', params
+        await axios.post('https://postavtezachotpozhaluysta.ru/rest/acc/', params
         ).catch(error => {
             document.getElementById("login_error").style.visibility = "visible"
         }).then(response => {

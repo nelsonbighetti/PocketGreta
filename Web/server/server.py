@@ -96,4 +96,4 @@ def get_image(name):
 
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0', debug=True, ssl_context=('certs/localhost.crt', 'certs/localhost.key'))
+    app.run(host= '0.0.0.0', debug=True, port=443, ssl_context=('certs/localhost.crt', 'certs/localhost.key'))
