@@ -38,7 +38,7 @@ The main task of the proposed concept of the application is the aggregation of t
 2. Clone repository using Git.
 3. Copy sertificate and private key in Web/server/certs
 4. Run: docker build -t greta_web ./Web
-5. Run: docker run -d -p 443:443 greta_web
+5. Run: docker run -p 443:443 greta_web > log.txt & disown
 
 
 ### Usage
