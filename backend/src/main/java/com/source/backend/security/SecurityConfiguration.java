@@ -1,6 +1,7 @@
 package com.source.backend.security;
 
 import org.springframework.security.config.BeanIds;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .antMatchers("/rest/auth/**")
                 .permitAll()
                 .antMatchers("/rest/map/**")
+                .permitAll()
+                .antMatchers("/rest/bonuses/*")
                 .permitAll()
                 .antMatchers("/rest/acc/*")
                 .authenticated()
