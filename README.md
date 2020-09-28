@@ -34,11 +34,11 @@ The main task of the proposed concept of the application is the aggregation of t
 4. Run on emulator or real device.
 
 #### Web
-1. 
-2.
-3.
-4.
-5.
+1. Install Docker.
+2. Clone repository using Git.
+3. Run: docker build -t greta_web ./Web
+4. Run: docker run -p 5000:5000 greta_web
+
 
 ### Deployment
 
