@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 @AllArgsConstructor
 public class AccountEndpoint {
 
-    private AccountService accountService;
+    private final AccountService accountService;
 
     @ResponseBody
     @RequestMapping("/{username}")
@@ -36,6 +36,18 @@ public class AccountEndpoint {
         }
         else {
             return new ResponseEntity("Now allowed", HttpStatus.FORBIDDEN);
+        }
+    }
+    @ResponseBody
+    @GetMapping("/role")
+    private ResponseEntity getAccountRoles(){
+        try
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(accountService.getRole());
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }

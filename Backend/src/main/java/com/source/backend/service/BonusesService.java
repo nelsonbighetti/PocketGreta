@@ -1,6 +1,8 @@
 package com.source.backend.service;
 
 
+import com.source.backend.Dto.HistoryDto;
+import com.source.backend.mapper.AccountToAccountAndCodeDtoMapper;
 import com.source.backend.model.Account;
 import com.source.backend.model.AccountAndCode;
 import com.source.backend.model.Code;
@@ -13,7 +15,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
 
 @Service
 @AllArgsConstructor
@@ -21,7 +27,7 @@ public class BonusesService {
     private final UserRepository userRepository;
     private final AccountAndCodeRepository accountAndCodeRepository;
     private final CodeRepository codeRepository;
-
+    private AccountToAccountAndCodeDtoMapper historyMapper;
     public String setBonusesForAccount(String code) throws Exception {
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         Optional<Account> accountOpt = userRepository.findByUsername(username);
@@ -35,8 +41,18 @@ public class BonusesService {
         account.setBonuses(account.getBonuses() + qCode.getBonuses());
 
         userRepository.save(account);
-        AccountAndCode accountAndCode = AccountAndCode.builder().account(account).code(qCode).build();
+        AccountAndCode accountAndCode = AccountAndCode.builder().account(account).code(qCode).bonuses(qCode.getBonuses()).date(Instant.now()).build();
         accountAndCodeRepository.save(accountAndCode);
         return "New code was set for account";
+    }
+
+    public Set<HistoryDto> bonusesHistory() throws Exception {
+        String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        Account account  = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("No Account " +
+                        "Found with username : " + username));
+        return accountAndCodeRepository.findAllByAccountOrderByDateAsc(account)
+                .stream()
+                .map(e -> historyMapper.mapToDto(e)).collect(toSet());
     }
 }

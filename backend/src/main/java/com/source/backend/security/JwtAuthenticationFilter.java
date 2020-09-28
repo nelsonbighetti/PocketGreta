@@ -33,13 +33,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @org.springframework.beans.factory.annotation.Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
-    private static List<String> skipFilterUrls = Arrays.asList("/rest/auth/**", "/rest/map/**");
+    private static List<String> skipFilterUrls = Arrays.asList("/rest/auth/**", "/rest/map/all");
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
-            if(skipFilterUrls.stream().anyMatch(url -> new AntPathRequestMatcher(url).matches(request)))
+            if (skipFilterUrls.stream().anyMatch(url -> new AntPathRequestMatcher(url).matches(request))){
+
                 filterChain.doFilter(request, response);
+                return;
+        }
             String jwt = getJwtFromRequest(request);
 
             if (StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {

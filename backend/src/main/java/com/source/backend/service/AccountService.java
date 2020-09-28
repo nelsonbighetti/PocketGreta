@@ -4,6 +4,8 @@ import com.source.backend.Dto.AccountInfoDto;
 import com.source.backend.model.Account;
 import com.source.backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,11 @@ public class AccountService {
                 .email(account.getEmail())
                 .bonuses(account.getBonuses())
                 .build();
+    }
+    public String getRole(){
+        String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        Account account = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + username));
+        return account.getPermission();
     }
 }

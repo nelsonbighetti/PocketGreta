@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new org.springframework.security
                 .core.userdetails.User(account.getUsername(), account.getPassword(),
                 account.isEnabled(), true, true,
-                true, getAuthorities("USER"));
+                true, getAuthorities(account.getPermission()));
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(String role) {

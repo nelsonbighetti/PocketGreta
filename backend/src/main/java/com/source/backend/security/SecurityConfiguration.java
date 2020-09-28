@@ -46,6 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .authorizeRequests()
                 .antMatchers("/rest/auth/**")
                 .permitAll()
+                .antMatchers("/rest/map/add","/rest/map/delete")
+                .hasAuthority("Admin")
                 .antMatchers("/rest/map/**")
                 .permitAll()
                 .antMatchers("/rest/bonuses/*")

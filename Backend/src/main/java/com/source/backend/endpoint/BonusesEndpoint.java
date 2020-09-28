@@ -6,6 +6,7 @@ import com.sun.mail.iap.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +21,25 @@ public class BonusesEndpoint {
 
     @PostMapping("/code")
     @ResponseBody
-    private ResponseEntity<String> bonuses(@RequestBody BonusesDto bonusesDto){
+    public ResponseEntity<String> bonuses(@RequestBody BonusesDto bonusesDto) {
         try {
                 return new ResponseEntity(bonusesService.setBonusesForAccount(bonusesDto.getCode()), HttpStatus.OK);
         }
         catch (Exception e)
         {
                 return new ResponseEntity("try new code", HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping("/history")
+    @ResponseBody
+    public ResponseEntity getBonusesHistory() {
+        try {
+            return new ResponseEntity(bonusesService.bonusesHistory(), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }

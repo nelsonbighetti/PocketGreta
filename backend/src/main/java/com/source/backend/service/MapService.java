@@ -1,6 +1,7 @@
 package com.source.backend.service;
 
 
+import com.source.backend.Dto.EcoUnitDto;
 import com.source.backend.model.EcoUnit;
 import com.source.backend.model.Type;
 import com.source.backend.repository.EcoUnitRepository;
@@ -41,5 +42,20 @@ public class MapService {
 
     public List<EcoUnit> getAll(){
         return ecoUnitRepository.findAll();
+    }
+
+    public void addEcoUnit(EcoUnitDto ecoUnitDto) throws Exception{
+        EcoUnit ecoUnit = new EcoUnit();
+        ecoUnit.setType(ecoUnitDto.getType());
+        ecoUnit.setDescriptions(ecoUnitDto.getDescriptions());
+        ecoUnit.setDetails(ecoUnitDto.getDetails());
+        ecoUnit.setLongitude(ecoUnitDto.getLongitude());
+        ecoUnit.setLatitude(ecoUnitDto.getLatitude());
+        ecoUnit.setSubtype(ecoUnitDto.getSubtype());
+        ecoUnitRepository.save(ecoUnit);
+    }
+    public void deleteEcoUnit(EcoUnitDto ecoUnitDto) throws Exception{
+        EcoUnit ecoUnit = ecoUnitRepository.findById(ecoUnitDto.getId()).orElseThrow(Exception::new);
+        ecoUnitRepository.delete(ecoUnit);
     }
 }
