@@ -44,6 +44,7 @@
     <string name="action_logout">Logout</string>
     <string name="YES">YES</string>
     <string name="NO">NO</string>
+    <string name="QRResult">Please focus camera to QR code</string>
     <string name="logout_go">Are you sure you want to log out?</string>
     <string name="usercabbinet">My profile</string>
     <string name="your_name">Username</string>

@@ -1,7 +1,6 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, abort, jsonify
 from flask import send_file
-import cryptography
 import requests
 import json
 app = Flask(__name__)
@@ -97,4 +96,4 @@ def get_image(name):
 
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0', debug=True, ssl_context=('certs/localhost.crt', 'certs/localhost.key'))
+    app.run(host= '0.0.0.0', debug=True, port=443, ssl_context=('certs/localhost.crt', 'certs/localhost.key'))
