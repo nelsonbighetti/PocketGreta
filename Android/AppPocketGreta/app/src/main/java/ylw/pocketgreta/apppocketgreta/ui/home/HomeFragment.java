@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         LatLng pp = new LatLng(latitude, longitude);
         MarkerOptions option = new MarkerOptions();
         option.position(pp).title(
-                type).snippet(description);
+                description).snippet(details);
         switch (type){
             case "TRASHBIN":
                 option.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_trash));
