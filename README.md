@@ -40,9 +40,6 @@ The main task of the proposed concept of the application is the aggregation of t
 4. Run: docker run -p 5000:5000 greta_web
 
 
-### Deployment
-
-
 ### Usage
 #### Android
  Firstly, you must register by pressing the button on the top right angle. Then you see the info of all separate waste collection points by pressing on any icon on the map.
