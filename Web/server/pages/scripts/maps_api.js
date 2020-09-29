@@ -58,6 +58,7 @@ function initMap() {
     });
 }
 
+var spotInfoWindow;
 function addObj(data){
     var latlng = new google.maps.LatLng(data["latitude"],data["longitude"]);
     var icon = {
@@ -74,15 +75,18 @@ function addObj(data){
         icon: icon
     });
 
-    var spotInfoWindow = new google.maps.InfoWindow({
-        content:'' +
-            '<div class="info" style="text-align: center; display: block; overflow-wrap: break-word;">'+
-            '<img src="'+'https://postavtezachotpozhaluysta.ru/resources/images/'+data["type"]+'.jpg'+'" width="200px" height="auto">'+
-            '<br><br><address>'+data['details']+'</address>'+
-            '<p class="details_header">'+data['descriptions']+'</p></div>'
-    });
 
     marker.addListener('click',function () {
+        if(spotInfoWindow)
+            spotInfoWindow.close();
+        spotInfoWindow = new google.maps.InfoWindow({
+            content:'' +
+                '<div class="info" style="text-align: center; display: block; overflow-wrap: break-word;">'+
+                '<img src="'+'https://postavtezachotpozhaluysta.ru/resources/images/'+data["type"]+'.jpg'+'" width="200px" height="auto">'+
+                '<br><br><address>'+data['details']+'</address>'+
+                '<p class="details_header">'+data['descriptions']+'</p></div>'
+        });
         spotInfoWindow.open(map, marker);
+        last_selected_id = data['id'];
     });
 }

@@ -98,3 +98,28 @@
     height: 25px;
     margin-top: -40px;
 }
+
+
+.card_popup{
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 200px;
+    height: 200px;
+    width: 400px;
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 4px 10px 18px -10px rgba(0,0,0,0.75);
+}
+
+.card_popup_inner{
+    background-color: red;
+    width: 100px;
+    position: absolute;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    left:0;
+}
