@@ -1,6 +1,12 @@
 <head>
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/buttons.css">
+    <link rel="stylesheet" href="stylesheets/toolbar.css">
+    <link rel="stylesheet" href="stylesheets/popups_main.css">
+    <link rel="stylesheet" href="stylesheets/spots_editor.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
 
 <body>
@@ -10,18 +16,36 @@
     <script type="application/javascript" src="scripts/profile.js"></script>
     <div id="over_map">
         <img src="https://postavtezachotpozhaluysta.ru/resources/images/logo.png" id="logo" alt="">
-        <div id="profile" class="user_info" style="visibility: hidden">
+        <div id="profile" style="visibility: hidden">
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/user.png" class="inner_icon">
-            <p id="profile_inner_text"></p>
+            <p id="profile_inner_text">Vasyan</p>
         </div>
-        <div id="email" class="user_info"  style="visibility: hidden">
+        <div id="email"  style="visibility: hidden">
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/email.png" class="inner_icon">
-            <p id="email_inner_text"></p>
+            <p id="email_inner_text">lilvasya@pip.com</p>
         </div>
-        <div id="rating" class="user_info" style="visibility: hidden">
+        <div id="rating" style="visibility: hidden">
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/rating.png" class="inner_icon">
-            <p id="rating_inner_text"></p>
+            <p id="rating_inner_text">228</p>
         </div>
+
+        <img src="https://postavtezachotpozhaluysta.ru/resources/icons/edit.png" id="edit_btn" onclick="enableEditor()" class="toolbar_btn" style="visibility: hidden"/>
+        <img src="https://postavtezachotpozhaluysta.ru/resources/icons/edit_close.png" id="edit_close_btn" onclick="disableEditor()" class="toolbar_btn" style="visibility: hidden"/>
+
+        <div id="editor_add_point" onclick="addSpotPopup()" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/icons/add_spot.png" class="inner_icon">
+            <p id="editor_add_point_inner_text">Add spot</p>
+        </div>
+        <div id="editor_del_point" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/icons/del_spot.png" class="inner_icon">
+            <p id="editor_del_point_inner_text">Remove spot</p>
+        </div>
+        
+        <div id="editor_coords_confirm_point" onclick="confirmCoords()" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/icons/confirm.png" class="inner_icon">
+            <p id="editor_coords_confirm_point_inner_text">Confirm</p>
+        </div>
+
         <img src="https://postavtezachotpozhaluysta.ru/resources/icons/logout.png" id="logout_btn" onclick="logout()" class="toolbar_btn" style="visibility: hidden"/>
         <img src="https://postavtezachotpozhaluysta.ru/resources/icons/login.png" id="login_btn" class="toolbar_btn" onclick="displayLoginPopup()">
         <img src="https://postavtezachotpozhaluysta.ru/resources/icons/register.png" id="register_btn" class="toolbar_btn" onclick="displayRegisterPopup()">
@@ -88,13 +112,68 @@
             </div>
         </div>
 
+        <div id="add_spot_popup" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/images/add_spot.png" id = "add_spot_popup_cover">
+            <div id = "add_spot_popup_inner">
+                <div id = "add_spot_error" style="visibility: hidden">
+                    <p>Cannot add spot : lon & lat not set</p>
+                </div>
+                <p style="margin-top: 25px">Add spot</p>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" disabled placeholder="Latitude" id = "add_spot_lat">
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="text" disabled placeholder="Longitude" id = "add_spot_lon">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" placeholder="Description" id = "add_spot_description">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <div class="input-field" id = "add_spot_type_selector">
+                                    <select id ="add_spot_type_selector_options" onchange="addSpotHandleDate()">
+                                        <option value="" disabled selected>Select spot type</option>
+                                        <option value="SHOP">Shop</option>
+                                        <option value="TRASHBIN" >Trashbin</option>
+                                        <option value="EVENT">Event</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-field col s6" id = "add_spot_details_wrapper">
+                                <input id="add_spot_details" type="text" style="visibility:hidden" placeholder="Event date" class="datepicker">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <button class="btn waves-effect waves-light" onclick="selectCoordinates()" id="add_spot_select_coords_btn">Select coordinates</button>
+                            </div>
+                            <div class="input-field col s6">
+                                <button class="btn waves-effect waves-light" onclick="sendNewSpot()" id="add_spot_submit_btn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script>checkLogin()</script>
     </div>
     <div id="dimmer" style="visibility: hidden" onclick="closePopups()"></div>
-    <script>checkLogin()</script>
-</div>
 
-
+<script>
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+</script>
+<script type="application/javascript" src="scripts/coords.js"></script>
 <script type="application/javascript" src="scripts/maps_api.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByATVtSnqA-Wj4Ue2_Wt8WMqk8uR1zxmg&callback=initMap"></script>
 <script type="application/javascript" src="scripts/client.js"></script>
+
 </body>

@@ -1,0 +1,125 @@
+
+.input{
+    width: 300px;
+    left: 50%;
+    margin-left: -150px;
+    position: relative;
+    display: block;
+    border: 0;
+    border-bottom: 2px solid gray;
+    padding: 7px 0;
+    background: transparent;
+    margin-top: 20px;
+    transition: border-color 0.2s;
+}
+
+.submit_button {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size:16px;
+    font-weight: 400;
+    line-height: 45px;
+    margin: 0 0 2em;
+    max-width: 160px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.popup{
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 200px;
+    height: 200px;
+    width: 400px;
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 4px 10px 18px -10px rgba(0,0,0,0.75);
+}
+
+.popup_cover{
+    background-color: red;
+    width: 100px;
+    position: absolute;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    left:0;
+}
+
+.popup_inner{
+    width: 300px;
+    right: 0;
+    display: block;
+    position: absolute;
+    z-index: 60;
+}
+
+#register_popup_login{
+    height: 25px;
+    margin-top: -20px;
+}
+
+#register_popup_email{
+    height: 25px;
+    margin-top: -20px;
+}
+
+#register_popup_password{
+    height: 25px;
+    margin-top: -40px;
+}
+
+.error_popup{
+    display: block;
+    background-color: #d81b60;
+    width: 300px;
+    border-top-right-radius: 10px;
+    line-height: 0px;
+    height: 20px;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    color: #fff;
+}
+
+
+#login_popup_email{
+    height: 25px;
+    margin-top: -20px;
+}
+
+#login_popup_password{
+    height: 25px;
+    margin-top: -40px;
+}
+
+
+.card_popup{
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 200px;
+    height: 200px;
+    width: 400px;
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 4px 10px 18px -10px rgba(0,0,0,0.75);
+}
+
+.card_popup_inner{
+    background-color: red;
+    width: 100px;
+    position: absolute;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    left:0;
+}

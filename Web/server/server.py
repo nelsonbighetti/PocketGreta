@@ -73,6 +73,30 @@ def getMapObjects():
 
     return resp.content.decode('utf-8')
 
+@app.route('/rest/map/add', methods=['POST'])
+def addMapObject():
+    data = json.loads(request.data.decode("utf-8"))
+    headers = {
+        "Authorization": "Bearer " + data['authenticationToken'],
+        "Cookie": "JSESSIONID=" + data['cookie_sessionid'] + "; Path=/; Domain=." + uri + "; HttpOnly;"
+    }
+
+    payload = {
+        "descriptions" : data["descriptions"],
+        "details" : data["details"],
+        "latitude" : data["latitude"],
+        "longitude" : data["longitude"],
+        "subtype" : data["subtype"],
+        "type" : data["type"]
+    }
+
+    resp = requests.post('http://' + uri + "/rest/map/add", json=payload, headers=headers)
+    resp_str = resp.content.decode('utf-8')
+    if (resp.status_code != 200 or resp_str!='ok'):
+        abort(404, description="Resource not found")
+    return resp_str
+
+
 @app.route('/', methods=['GET'])
 def index():
     return send_file('./pages/index.html', mimetype='text/html')
