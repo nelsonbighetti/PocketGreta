@@ -186,3 +186,134 @@
     margin-top: 0px;
     left: 12px;
 }
+
+#editor_del_point_confirm{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 94px;
+    width: 150px;
+    height: 36px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #d81b60;
+    text-align: center;
+    line-height: 36px;
+}
+
+#editor_del_point_confirm:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
+#editor_del_point_confirm_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: small;
+    color: white;
+    margin-top: 0px;
+    left: 12px;
+}
+
+#editor_del_point_go_back{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 94px;
+    width: 150px;
+    height: 36px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #2bbbad;
+    text-align: center;
+    line-height: 36px;
+}
+
+#editor_del_point_go_back:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
+#editor_del_point_go_back_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: small;
+    color: white;
+    margin-top: 0px;
+    left: 12px;
+}
+
+#editor_del_point_cancel_selection{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 255px;
+    width: 150px;
+    height: 36px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #2bbbad;
+    text-align: center;
+    line-height: 36px;
+}
+
+#editor_del_point_cancel_selection_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: small;
+    color: white;
+    margin-top: 0px;
+    left: 10px;
+}
+
+#editor_del_point_cancel_selection:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
+#editor_del_spot_error{
+    width: 200px;
+    height: 120px;
+}
+
+#editor_del_spot_error_confirm_btn{
+    margin-top: -30px;
+}
+
+#editor_del_spot_error{
+    left: 50%;
+    margin-left: -100px;
+    margin-top: 200px;
+    height: 110px;
+    width: 200px;
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 4px 10px 18px -10px rgba(0,0,0,0.75);
+}

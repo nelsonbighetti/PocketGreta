@@ -36,6 +36,7 @@ function closePopups(){
     setVisibility('login_popup', 'hidden');
     setVisibility('add_spot_popup', 'hidden');
     setVisibility('add_spot_error', 'hidden');
+    setVisibility('editor_del_spot_error','hidden');
 }
 
 function getCookie(name) {
@@ -90,6 +91,7 @@ async function loginCreds(email, password, userdriven){
             checkLogin();
         }
     })
+    checkPrivileges()
 }
 
 async function dologin() {
@@ -152,8 +154,6 @@ function refreshToken(){
 }
 
 async function checkLogin() {
-    //loginStub()
-    //return
     let username = getCookie('username')
     if(username){
         refreshToken()
@@ -181,13 +181,31 @@ async function checkLogin() {
                 setVisibility("rating", "visible")
                 setVisibility("email", "visible")
                 setVisibility("logout_btn", "visible")
-                setVisibility("edit_btn", "visible")
                 document.getElementById('profile_inner_text').innerHTML = response.data['username'];
                 document.getElementById('rating_inner_text').innerHTML = response.data['bonuses'];
                 document.getElementById('email_inner_text').innerHTML = response.data['email'];
             }
         })
     }
+    checkPrivileges()
+}
+
+function hideAll(){
+    closePopups()
+    setVisibility("profile", "hidden")
+    setVisibility("rating", "hidden")
+    setVisibility("email", "hidden")
+
+    setVisibility('edit_btn', 'hidden')
+    setVisibility('edit_close_btn', 'hidden')
+    setVisibility('editor_add_point', 'hidden')
+    setVisibility('editor_del_point', 'hidden')
+    setVisibility('editor_del_point_go_back', 'hidden')
+    setVisibility('editor_del_point_cancel_selection', 'hidden')
+    setVisibility('editor_del_point_confirm', 'hidden')
+    setVisibility('editor_coords_confirm_point', 'hidden')
+    setVisibility('editor_del_spot_error', 'hidden')
+    delSpotMode = false
 }
 
 function logout() {
@@ -199,22 +217,13 @@ function logout() {
 
     setVisibility("login_btn", "visible")
     setVisibility("register_btn", "visible")
-    setVisibility("profile", "hidden")
-    setVisibility("rating", "hidden")
     setVisibility("logout_btn", "hidden")
-    setVisibility("email", "hidden")
+    hideAll()
 }
 
-function loginStub(){
-    setVisibility("login_btn", "hidden")
-    setVisibility("register_btn", "hidden")
-    setVisibility("profile", "visible")
-    setVisibility("rating", "visible")
-    setVisibility("email", "visible")
-    setVisibility("logout_btn", "visible")
-    setVisibility("edit_btn", "visible")
-    enableEditor()
-    addSpotPopup()
+function displayDelSpotError(){
+    setVisibility('dimmer', 'visible')
+    setVisibility('editor_del_spot_error', 'visible')
 }
 
 function enableEditor(){
@@ -224,29 +233,22 @@ function enableEditor(){
 
     setVisibility("editor_add_point", "visible")
     setVisibility("editor_del_point", "visible")
-    setVisibility("editor_add_point_inner_text", "visible")
-    setVisibility("editor_add_point_inner_text", "visible")
 
     setVisibility("edit_btn", "hidden")
     setVisibility("edit_close_btn", "visible")
 }
 
 function disableEditor(){
+    hideAll()
+
     setVisibility("profile", "visible")
     setVisibility("rating", "visible")
     setVisibility("email", "visible")
-
-    setVisibility("editor_add_point", "hidden")
-    setVisibility("editor_del_point", "hidden")
-    setVisibility("editor_add_point_inner_text", "hidden")
-    setVisibility("editor_add_point_inner_text", "hidden")
-
     setVisibility("edit_btn", "visible")
-    setVisibility("edit_close_btn", "hidden")
-    closePopups()
 }
 
 function addSpotPopup() {
+    enableEditor();
     setVisibility('dimmer', 'visible');
     setVisibility('add_spot_popup', 'visible');
 }
@@ -358,4 +360,98 @@ async function sendNewSpot() {
             location.reload();
         }
     })
+}
+
+function delSpotRoutine(){
+    closePopups();
+    setVisibility('editor_add_point','hidden')
+    setVisibility('editor_del_point','hidden')
+    setVisibility('editor_del_point_go_back','visible')
+    delSpotMode = true;
+}
+
+function delSpotGoBack(){
+    setVisibility('editor_add_point','visible')
+    setVisibility('editor_del_point','visible')
+    setVisibility('editor_del_point_go_back','hidden')
+    delSpotMode = false;
+}
+
+async function delSpotConfirm(){
+    setVisibility('editor_add_point','visible')
+    setVisibility('editor_del_point','visible')
+    setVisibility('editor_del_point_confirm','hidden')
+    setVisibility('editor_del_point_cancel_selection','hidden')
+    delSpotMode = false;
+
+
+    refreshToken()
+    let authenticationToken = getCookie('authenticationToken')
+    let cookie_sessionid = getCookie('cookie_sessionid')
+
+
+    params = {
+        "id" : last_selected_id,
+        "authenticationToken": authenticationToken,
+        "cookie_sessionid": cookie_sessionid
+    }
+
+    await axios.post('https://postavtezachotpozhaluysta.ru/rest/map/delete', params
+    ).catch(error => {
+        displayDelSpotError();
+    }).then(response => {
+        if(response.status!==200){
+            displayDelSpotError();
+        }
+        else{
+            location.reload();
+        }
+    })
+
+}
+
+function delSpotShowConfirmation(){
+    setVisibility('editor_del_point_go_back','hidden')
+    setVisibility('editor_del_point_confirm','visible')
+    setVisibility('editor_del_point_cancel_selection','visible')
+}
+
+function delSpotCancelSelection(){
+    setVisibility('editor_del_point_confirm','hidden')
+    setVisibility('editor_del_point_go_back','visible')
+    setVisibility('editor_del_point_cancel_selection','hidden')
+}
+
+function editor_del_spot_error_confirm() {
+    closePopups();
+}
+
+function displayEditorFeature(){
+    setVisibility('edit_btn', 'visible')
+}
+
+async function checkPrivileges(){
+
+    let authenticationToken = getCookie('authenticationToken')
+    let cookie_sessionid = getCookie('cookie_sessionid')
+    if(authenticationToken){
+        params = {
+            "authenticationToken": authenticationToken,
+            "cookie_sessionid": cookie_sessionid
+        }
+
+        await axios.post('https://postavtezachotpozhaluysta.ru/rest/acc/role', params
+        ).catch(error => {
+
+        }).then(response => {
+            if(response.status!==200){
+
+            }
+            else{
+                if(response.data=='Admin') {
+                    displayEditorFeature();
+                }
+            }
+        })
+    }
 }

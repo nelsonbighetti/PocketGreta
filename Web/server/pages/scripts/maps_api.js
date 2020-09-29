@@ -38,6 +38,7 @@ function initMap() {
     coordsPopup = new google.maps.InfoWindow(
         {content: 'Click the map to get Lat/Lng!', position: loc});
 
+    delSpotMode = false;
     show_coords_popups = false;
     // Configure the click listener.
     updateCoords(lat_default, lng_default)
@@ -88,5 +89,7 @@ function addObj(data){
         });
         spotInfoWindow.open(map, marker);
         last_selected_id = data['id'];
+        if(delSpotMode)
+            delSpotShowConfirmation()
     });
 }

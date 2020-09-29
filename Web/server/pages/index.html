@@ -36,15 +36,47 @@
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/add_spot.png" class="inner_icon">
             <p id="editor_add_point_inner_text">Add spot</p>
         </div>
-        <div id="editor_del_point" style="visibility: hidden">
+
+        <div id="editor_del_point" onclick="delSpotRoutine()" style="visibility: hidden">
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/del_spot.png" class="inner_icon">
             <p id="editor_del_point_inner_text">Remove spot</p>
+        </div>
+
+        <div id="editor_del_point_go_back" onclick="delSpotGoBack()"   style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/icons/back.png" class="inner_icon">
+            <p id="editor_del_point_go_back_inner_text">Go back</p>
+        </div>
+
+        <div id="editor_del_point_cancel_selection" onclick="delSpotCancelSelection()" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/icons/back.png" class="inner_icon">
+            <p id="editor_del_point_cancel_selection_inner_text">Cancel selection</p>
+        </div>
+
+        <div id="editor_del_point_confirm" onclick="delSpotConfirm()" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/icons/confirm.png" class="inner_icon">
+            <p id="editor_del_point_confirm_inner_text">Confirm</p>
         </div>
         
         <div id="editor_coords_confirm_point" onclick="confirmCoords()" style="visibility: hidden">
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/confirm.png" class="inner_icon">
             <p id="editor_coords_confirm_point_inner_text">Confirm</p>
         </div>
+
+        <div id="editor_del_spot_error" style="visibility: hidden">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <p>Deletion error</p>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect waves-light" onclick="editor_del_spot_error_confirm()" id="editor_del_spot_error_confirm_btn">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <img src="https://postavtezachotpozhaluysta.ru/resources/icons/logout.png" id="logout_btn" onclick="logout()" class="toolbar_btn" style="visibility: hidden"/>
         <img src="https://postavtezachotpozhaluysta.ru/resources/icons/login.png" id="login_btn" class="toolbar_btn" onclick="displayLoginPopup()">

@@ -96,6 +96,36 @@ def addMapObject():
         abort(404, description="Resource not found")
     return resp_str
 
+@app.route('/rest/map/delete', methods=['POST'])
+def delMapObject():
+    data = json.loads(request.data.decode("utf-8"))
+    headers = {
+        "Authorization": "Bearer " + data['authenticationToken'],
+        "Cookie": "JSESSIONID=" + data['cookie_sessionid'] + "; Path=/; Domain=." + uri + "; HttpOnly;"
+    }
+
+    payload = {"id": data["id"]}
+    resp = requests.delete('http://' + uri + "/rest/map/delete", json=payload, headers=headers)
+    resp_str = resp.content.decode('utf-8')
+
+    if (resp.status_code != 200 or resp_str != 'ok'):
+        abort(404, description="Resource not found")
+
+    return resp_str
+
+@app.route('/rest/acc/role', methods=['POST'])
+def checkPrivileges():
+    data = json.loads(request.data.decode("utf-8"))
+    headers = {
+        "Authorization": "Bearer " + data['authenticationToken'],
+        "Cookie": "JSESSIONID=" + data['cookie_sessionid'] + "; Path=/; Domain=." + uri + "; HttpOnly;"
+    }
+    resp = requests.get('http://' + uri + "/rest/acc/role", headers=headers)
+    resp_str = resp.content.decode('utf-8')
+    if (resp.status_code != 200):
+        abort(404, description="Resource not found")
+
+    return resp_str
 
 @app.route('/', methods=['GET'])
 def index():
@@ -105,6 +135,7 @@ def index():
 def get_script(name):
     return send_file('./pages/scripts/'+name, mimetype='text/javascript')
 
+
 @app.route('/stylesheets/<string:name>', methods=['GET'])
 def get_styles(name):
     return send_file('./pages/stylesheets/'+name, mimetype='text/css')
@@ -113,6 +144,7 @@ def get_styles(name):
 @app.route('/resources/icons/<string:name>', methods=['GET'])
 def get_resource(name):
     return send_file('./resources/icons/'+name, mimetype='image/gif')
+
 
 @app.route('/resources/images/<string:name>', methods=['GET'])
 def get_image(name):
