@@ -24,6 +24,8 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ylw.pocketgreta.apppocketgreta.ActivityWrittenOff;
+import ylw.pocketgreta.apppocketgreta.HistoryActivity;
 import ylw.pocketgreta.apppocketgreta.LogoutActivity;
 import ylw.pocketgreta.apppocketgreta.MainActivity;
 import ylw.pocketgreta.apppocketgreta.R;
@@ -37,6 +39,8 @@ public class GalleryFragment extends Fragment {
     TextView bonusText;
     private GalleryViewModel galleryViewModel;
     Button buttonLogin;
+    Button buttonHistory;
+    Button buttonOff;
     TextView usernameText;
     TextView bonusTextView;
     @SuppressLint("SetTextI18n")
@@ -55,6 +59,8 @@ public class GalleryFragment extends Fragment {
             }
         });
         buttonLogin = root.findViewById(R.id.button_login);
+        buttonHistory = root.findViewById(R.id.button_history);
+        buttonOff = root.findViewById(R.id.button_off);
         usernameText = root.findViewById(R.id.text_name);
         buttonLogin.setVisibility(View.GONE);
         Singleton singleton = Singleton.getInstance();
@@ -66,12 +72,16 @@ public class GalleryFragment extends Fragment {
                 usernameText.setText("");
                 bonusTextView.setText("");
                 bonusText.setText("No info your bonuses. Login!");
+                buttonOff.setVisibility(View.GONE);
+                buttonHistory.setVisibility(View.GONE);
             } else {
                 buttonLogin.setVisibility(View.GONE);
                 bonusTextView.setText("Your bonuses");
                 usernameText.setText("Username");
                 String tokenAuth = singleton.getTokenAuth();
                 bonus = bonusServerData(username, tokenAuth);
+                buttonHistory.setVisibility(View.VISIBLE);
+                buttonOff.setVisibility(View.VISIBLE);
             }
         }
         else
@@ -85,6 +95,18 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+        buttonHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), HistoryActivity.class));
+            }
+        });
+        buttonOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ActivityWrittenOff.class));
             }
         });
         return root;
