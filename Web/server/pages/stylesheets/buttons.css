@@ -1,0 +1,67 @@
+#logout_btn{
+    right: 0;
+    display: block;
+    position: absolute;
+    border-radius: 50px;
+    background-color: #d81b60;
+}
+#login_btn{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 45px;
+    color: black;
+    object-fit: contain;
+}
+#register_btn{
+    right: 0;
+    display: block;
+    position: absolute;
+    border-radius: 50px;
+    background-color: #2bbbad;
+}
+#profile_btn{
+    width: 40px;
+    height: 40px;
+}
+.toolbar_btn{
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+.toolbar_btn:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+#submit_btn{
+    margin-top: -50px;
+    margin-left: 195px;
+}
+#login_popup_btn{
+    margin-top: -50px;
+    margin-left: 195px;
+}
+#edit_btn{
+    right: 45px;
+    display: block;
+    position: absolute;
+    border-radius: 50px;
+    background-color: #2bbbad;
+}
+#edit_btn:hover{
+    transition: all 0.4s ease 0s;
+}
+#edit_close_btn{
+    right: 45px;
+    display: block;
+    position: absolute;
+    border-radius: 50px;
+    background-color: #d81b60;
+}
+#edit_close_btn:hover{
+    transition: all 0.4s ease 0s;
+}

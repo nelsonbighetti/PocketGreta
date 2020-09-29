@@ -1,0 +1,188 @@
+#add_spot_popup{
+    left: 50%;
+    margin-left: -400px;
+    margin-top: 200px;
+    height: 400px;
+    width: 800px;
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 4px 10px 18px -10px rgba(0,0,0,0.75);
+}
+
+#add_spot_inner{
+    display: block;
+    position: absolute;
+    padding: 0px;
+}
+
+#add_spot_description{
+    margin-top: -20px;
+}
+
+#add_spot_type_selector{
+    margin-top: -20px;
+}
+
+#add_spot_event_date{
+    margin-top: -20px;
+}
+
+#add_spot_select_coords_btn{
+    margin-top: -20px;
+}
+
+#add_spot_submit_btn{
+    margin-top: -20px;
+}
+
+#add_spot_details{
+    margin-top: -20px;
+}
+
+#add_spot_error{
+    display: block;
+    background-color: #d81b60;
+    width: 600px;
+    border-top-right-radius: 10px;
+    line-height: 0px;
+    height: 20px;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    color: #fff;
+}
+
+#add_spot_popup_inner{
+    width: 600px;
+    right: 0;
+    display: block;
+    position: absolute;
+    z-index: 60;
+}
+
+#add_spot_popup_cover{
+    background-color: red;
+    width: 200px;
+    position: absolute;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    left:0;
+}
+
+#add_spot_select_coords_btn{
+    background-color: #d81b60;
+}
+
+#editor_add_point{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 255px;
+    width: 150px;
+    height: 36px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #2bbbad;
+    text-align: center;
+    line-height: 36px;
+}
+
+#editor_add_point_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: small;
+
+    color: white;
+    margin-top: 0px;
+    left: 10px;
+}
+
+#editor_add_point:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
+#editor_del_point{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 94px;
+    width: 150px;
+    height: 36px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #d81b60;
+    text-align: center;
+    line-height: 36px;
+}
+
+#editor_del_point:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
+#editor_del_point_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: small;
+    color: white;
+    margin-top: 0px;
+    left: 12px;
+}
+
+
+#editor_coords_confirm_point{
+    display: block;
+    position: absolute;
+    border-radius: 40px;
+    right: 94px;
+    width: 150px;
+    height: 36px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin-top: 2px;
+    background-color: #2bbbad;
+    text-align: center;
+    line-height: 36px;
+}
+
+#editor_coords_confirm_point:hover{
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
+#editor_coords_confirm_point_inner_text{
+    display: inline-block;
+    position: absolute;
+    width: 150px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: small;
+    color: white;
+    margin-top: 0px;
+    left: 12px;
+}

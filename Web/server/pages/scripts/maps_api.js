@@ -1,7 +1,11 @@
 
 var map;
+var coordsPopup;
+
 function initMap() {
-    var loc = new google.maps.LatLng(59.936362, 30.319476);
+    lat_default = 59.936362
+    lng_default = 30.319476
+    var loc = new google.maps.LatLng(lat_default, lng_default);
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
 
@@ -30,6 +34,28 @@ function initMap() {
             map.setCenter(loc);
         });
     }
+
+    coordsPopup = new google.maps.InfoWindow(
+        {content: 'Click the map to get Lat/Lng!', position: loc});
+
+    show_coords_popups = false;
+    // Configure the click listener.
+    updateCoords(lat_default, lng_default)
+    map.addListener('click', function(mapsMouseEvent) {
+        if(isShowPopups())
+        {
+            coordsPopup.close();
+
+            // Create a new InfoWindow.
+            coordsPopup = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+            coordsPopup.setContent(mapsMouseEvent.latLng.toString());
+            coordsPopup.open(map);
+        }
+
+        lat = mapsMouseEvent.latLng.lat();
+        lng = mapsMouseEvent.latLng.lng();
+        updateCoords(lat, lng)
+    });
 }
 
 function addObj(data){
@@ -48,7 +74,7 @@ function addObj(data){
         icon: icon
     });
 
-    var infoWindow = new google.maps.InfoWindow({
+    var spotInfoWindow = new google.maps.InfoWindow({
         content:'' +
             '<div class="info" style="text-align: center; display: block; overflow-wrap: break-word;">'+
             '<img src="'+'https://postavtezachotpozhaluysta.ru/resources/images/'+data["type"]+'.jpg'+'" width="200px" height="auto">'+
@@ -57,6 +83,6 @@ function addObj(data){
     });
 
     marker.addListener('click',function () {
-        infoWindow.open(map, marker);
+        spotInfoWindow.open(map, marker);
     });
 }
