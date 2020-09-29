@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="stylesheets/toolbar.css">
     <link rel="stylesheet" href="stylesheets/popups_main.css">
     <link rel="stylesheet" href="stylesheets/spots_editor.css">
+    <link rel="stylesheet" href="stylesheets/history.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
@@ -24,7 +25,7 @@
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/email.png" class="inner_icon">
             <p id="email_inner_text">lilvasya@pip.com</p>
         </div>
-        <div id="rating" style="visibility: hidden">
+        <div id="rating" style="visibility: hidden" onclick="displayHistory()">
             <img src="https://postavtezachotpozhaluysta.ru/resources/icons/rating.png" class="inner_icon">
             <p id="rating_inner_text">228</p>
         </div>
@@ -194,13 +195,42 @@
             </div>
         </div>
 
-    <script>checkLogin()</script>
+        <div id="history_popup" style="visibility: hidden">
+            <img src="https://postavtezachotpozhaluysta.ru/resources/images/history.png" id = "history_popup_cover">
+            <div id = "history_popup_inner">
+                <div id = "history_error" style="visibility: hidden">
+                    <p>Cannot display history - actions not found</p>
+                </div>
+                <p style="margin-top: 25px">Operations history</p>
+
+                <div class="row">
+                    <div class="col s12">
+                        <div class="responsive-table table-status-sheet">
+                            <table class="bordered">
+                                <thead>
+                                <tr>
+                                    <td class="center">Date</td>
+                                    <td class="center">Type</td>
+                                    <td class="center">Amount</td>
+                                </tr>
+                                </thead>
+                                <tbody id="history_operations_table">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div id="dimmer" style="visibility: hidden" onclick="closePopups()"></div>
-
+</div>
 <script>
     $(document).ready(function(){
         $('select').formSelect();
+        checkLogin()
     });
 </script>
 <script type="application/javascript" src="scripts/coords.js"></script>

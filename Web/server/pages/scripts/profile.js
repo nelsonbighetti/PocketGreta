@@ -37,6 +37,9 @@ function closePopups(){
     setVisibility('add_spot_popup', 'hidden');
     setVisibility('add_spot_error', 'hidden');
     setVisibility('editor_del_spot_error','hidden');
+
+    setVisibility('history_popup', 'hidden')
+    setVisibility('history_error', 'hidden')
 }
 
 function getCookie(name) {
@@ -205,6 +208,10 @@ function hideAll(){
     setVisibility('editor_del_point_confirm', 'hidden')
     setVisibility('editor_coords_confirm_point', 'hidden')
     setVisibility('editor_del_spot_error', 'hidden')
+
+    setVisibility('history_popup', 'hidden')
+    setVisibility('history_error', 'hidden')
+
     delSpotMode = false
 }
 
@@ -431,7 +438,6 @@ function displayEditorFeature(){
 }
 
 async function checkPrivileges(){
-
     let authenticationToken = getCookie('authenticationToken')
     let cookie_sessionid = getCookie('cookie_sessionid')
     if(authenticationToken){
@@ -453,5 +459,58 @@ async function checkPrivileges(){
                 }
             }
         })
+    }
+}
+
+async function displayHistory(){
+    setVisibility('dimmer','visible')
+    setVisibility('history_popup','visible')
+    document.getElementById("history_error").style.visibility = "hidden"
+
+    let authenticationToken = getCookie('authenticationToken')
+    let cookie_sessionid = getCookie('cookie_sessionid')
+
+    if(authenticationToken){
+
+        params = {
+            "authenticationToken": authenticationToken,
+            "cookie_sessionid": cookie_sessionid
+        }
+        document.getElementById("history_operations_table").innerHTML = ''
+        await axios.post('https://postavtezachotpozhaluysta.ru/rest/bonuses/history', params
+        ).catch(error => {
+
+        }).then(response => {
+            if(response.status!==200){
+
+            }
+            else{
+                if(response.data.length>1) {
+                    table = ''
+                    for(var i = 0; i < response.data.length; i++) {
+                        var obj = response.data[i];
+                        table = table+'<tr>'
+                        table = table+'<td class="center"><p>'+obj['date']+'</p></td>'
+                        if(parseInt(obj['bonuses'])<0){
+                            table = table+'<td class="center"><p>-</p></td>'
+                        }
+                        else{
+                            table = table+'<td class="center"><p>+</p></td>'
+                        }
+                        table = table+'<td class="center">'+Math.abs(parseInt(obj['bonuses']))+'</td>'
+                        table = table+'</tr>'
+                    }
+                    document.getElementById("history_operations_table").innerHTML = table
+                }
+                else{
+                    document.getElementById("history_error").style.visibility = "visible"
+                    document.getElementById("history_error").innerHTML = "<p>History is empty</p>"
+                }
+            }
+        })
+    }
+    else{
+        document.getElementById("history_error").style.visibility = "visible"
+        document.getElementById("history_error").innerHTML = "<p>Authorization error</p>"
     }
 }

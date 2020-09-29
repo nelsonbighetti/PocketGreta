@@ -1,6 +1,7 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, abort, jsonify
 from flask import send_file
+from dateutil import parser
 import requests
 import json
 app = Flask(__name__)
@@ -126,6 +127,26 @@ def checkPrivileges():
         abort(404, description="Resource not found")
 
     return resp_str
+
+@app.route('/rest/bonuses/history', methods=['POST'])
+def getHistory():
+    data = json.loads(request.data.decode("utf-8"))
+    headers = {
+        "Authorization": "Bearer " + data['authenticationToken'],
+        "Cookie": "JSESSIONID=" + data['cookie_sessionid'] + "; Path=/; Domain=." + uri + "; HttpOnly;"
+    }
+    resp = requests.get('http://' + uri + "/rest/bonuses/history", headers=headers)
+    payload = json.loads(resp.content.decode("utf-8"))
+
+    if (resp.status_code != 200):
+        abort(404, description="Resource not found")
+
+    for obj in payload:
+        time_parser = parser.parse(obj['date'])
+        obj['date'] = time_parser.strftime("%d-%m-%Y %H:%M:%S")
+
+    return json.dumps(payload)
+
 
 @app.route('/', methods=['GET'])
 def index():
