@@ -25,13 +25,16 @@ public class JwtProvider {
     private KeyStore keyStore;
     @Value("${jwt.expiration.time}")
     private Long jwtExpirationInMillis;
-
+    @Value("${keystore.alias}")
+    private String keystoreAlias;
+    @Value("${keystore.password}")
+    private String keystorePassword;
     @PostConstruct
     public void init() throws Exception{
         try {
             keyStore = KeyStore.getInstance("JKS");
             InputStream resourceAsStream = getClass().getResourceAsStream("/keystore.jks");
-            keyStore.load(resourceAsStream, "GretaApp".toCharArray());
+            keyStore.load(resourceAsStream, keystorePassword.toCharArray());
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
             throw new Exception("Exception occurred while loading keystore", e);
         }
@@ -59,7 +62,7 @@ public class JwtProvider {
 
     private PrivateKey getPrivateKey() throws Exception{
         try {
-            return (PrivateKey) keyStore.getKey("ssl", "GretaApp".toCharArray());
+            return (PrivateKey) keyStore.getKey(keystoreAlias, keystorePassword.toCharArray());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
             throw new Exception("Exception occured while retrieving public key from keystore", e);
         }
@@ -72,7 +75,7 @@ public class JwtProvider {
 
     private PublicKey getPublickey() throws Exception{
         try {
-            return keyStore.getCertificate("ssl").getPublicKey();
+            return keyStore.getCertificate(keystoreAlias).getPublicKey();
         } catch (KeyStoreException e) {
             throw new Exception("Exception occured while " +
                     "retrieving public key from keystore", e);
