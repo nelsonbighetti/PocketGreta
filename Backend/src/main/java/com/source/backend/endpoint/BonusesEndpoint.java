@@ -1,6 +1,8 @@
 package com.source.backend.endpoint;
 
+import com.source.backend.Dto.AccountCodeRequest;
 import com.source.backend.Dto.BonusesDto;
+import com.source.backend.Dto.RegisterRequest;
 import com.source.backend.service.BonusesService;
 import com.sun.mail.iap.Response;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/rest/bonuses")
@@ -40,6 +44,19 @@ public class BonusesEndpoint {
         catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/addcode")
+    @ResponseBody
+    public ResponseEntity addCode(@Valid @RequestBody AccountCodeRequest accountCodeRequest) {
+        try {
+            bonusesService.addCode(accountCodeRequest.getCode(), accountCodeRequest.getBonuses());
+            return ResponseEntity.status(HttpStatus.OK).body("ok");
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("can't add code");
         }
     }
 }
