@@ -10,6 +10,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import java.time.Instant;
 
 @Data
 @Entity
@@ -17,15 +20,18 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Code {
-
+public class AccountCode {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
-    private String qrcode;
+    @ManyToOne
+    private Account account;
 
-    private int bonuses;
+    @OneToOne
+    private Code code;
+
+
+    private Instant date;
 
 }

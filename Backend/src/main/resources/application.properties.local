@@ -1,0 +1,16 @@
+spring.datasource.initialization-mode=always
+spring.datasource.platform=postgres
+spring.datasource.url= Set your database url
+spring.datasource.username= Set your database username
+spring.datasource.password= Set your database password
+spring.jpa.generate-ddl = true
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+
+
+jwt.expiration.time=900000
+
+
+logging.level.org.springframework.security=DEBUG
+
+keystore.alias = set your jks alias
+keystore.password = set your jks password

@@ -51,4 +51,6 @@
     <string name="your_bonus">Your bonus:</string>
     <string name="pswd">Confirm password</string>
     <string name="ok">OK</string>
+    <string name="EnterNumberBonuses">" Enter the number of bonuses to be debited"</string>
+    <string name="Send">SEND</string>
 </resources>
