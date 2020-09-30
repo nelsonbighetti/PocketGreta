@@ -33,7 +33,7 @@ def login():
 
     s = requests.Session()
     r = s.post('http://' + uri + path, json={"email": creds['email'], "password": creds['password']})
-    sys.stderr.write({"email": creds['email'], "password": creds['password']})
+    sys.stderr.write(str({"email": creds['email'], "password": creds['password']}))
 
     if(r.status_code!=200):
         abort(404, description="Resource not found")
@@ -60,7 +60,7 @@ def register():
     creds = json.loads(request.data.decode("utf-8"))
 
     resp = requests.post('http://' + uri + "/rest/auth/signup", json={"username": removeDangerous(creds['username']), "email": removeDangerous(creds['email']), "password": creds['password']})
-    sys.stderr.write({"username": removeDangerous(creds['username']), "email": removeDangerous(creds['email']), "password": creds['password']})
+    sys.stderr.write(str({"username": removeDangerous(creds['username']), "email": removeDangerous(creds['email']), "password": creds['password']}))
 
     if (resp.status_code != 200):
         abort(404, description="Invalid data")
@@ -75,7 +75,7 @@ def refresh_token():
     data = json.loads(request.data.decode("utf-8"))
 
     resp = requests.post('http://' + uri + "/rest/auth/refresh/token", json={"username": data['username'], "refreshToken": data['refreshToken']})
-    sys.stderr.write({"username": data['username'], "refreshToken": data['refreshToken']})
+    sys.stderr.write(str({"username": data['username'], "refreshToken": data['refreshToken']}))
 
     if (resp.status_code != 200):
         abort(404, description="Invalid data")
