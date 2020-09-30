@@ -4,11 +4,16 @@ from flask import send_file
 from dateutil import parser
 import requests
 import json
+import re
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 uri = "457f5a38fd2e.ngrok.io"
+
+def removeDangerous(data):
+    data = re.sub(r"[{}<>/\"\']", "", data)
+    return data
 
 @app.errorhandler(404)
 def resource_not_found(e):
@@ -45,7 +50,7 @@ def get_rating():
 def register():
     creds = json.loads(request.data.decode("utf-8"))
 
-    resp = requests.post('http://' + uri + "/rest/auth/signup", json={"username": creds['username'], "email": creds['email'], "password": creds['password']})
+    resp = requests.post('http://' + uri + "/rest/auth/signup", json={"username": removeDangerous(creds['username']), "email": removeDangerous(creds['email']), "password": creds['password']})
 
     if (resp.status_code != 200):
         abort(404, description="Invalid data")
@@ -83,12 +88,12 @@ def addMapObject():
     }
 
     payload = {
-        "descriptions" : data["descriptions"],
-        "details" : data["details"],
-        "latitude" : data["latitude"],
-        "longitude" : data["longitude"],
-        "subtype" : data["subtype"],
-        "type" : data["type"]
+        "descriptions" : removeDangerous(data["descriptions"]),
+        "details" : removeDangerous(data["details"]),
+        "latitude" : removeDangerous(data["latitude"]),
+        "longitude" : removeDangerous(data["longitude"]),
+        "subtype" : removeDangerous(data["subtype"]),
+        "type" : removeDangerous(data["type"])
     }
 
     resp = requests.post('http://' + uri + "/rest/map/add", json=payload, headers=headers)
