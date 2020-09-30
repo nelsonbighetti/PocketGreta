@@ -48,7 +48,8 @@ You can use ngrok to access the external network
 ### Usage
 #### Android
  Firstly, you must register by pressing the button on the top right angle. Then you see the info of all separate waste collection points by pressing on any icon on the map.
- Also, you can scan QR-code that was given you by organization interested in using secondary raw materials and get points for your contribution to the environment. The number of earned points you can see in your profile where you can get by side menu. 
+ Also, you can scan QR-code that was given you by organization interested in using secondary raw materials and get points for your contribution to the environment. You can also write off the accumulated bonuses using the generated QR code, or share them with your friends! 
+You can view the history of debiting and accruing bonuses in your personal account.The number of earned points you can see in your profile where you can get by side menu. The number of earned points you can see in your profile where you can get by side menu. 
  ![](reports/imgs/android-register-page.jpg)
  ![](reports/imgs/android-login-page.jpg)
  ![](reports/imgs/android-side-menu.jpg)
