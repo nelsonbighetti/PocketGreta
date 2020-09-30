@@ -40,6 +40,10 @@ The main task of the proposed concept of the application is the aggregation of t
 4. Run: docker build -t greta_web ./Web
 5. Run: docker run -p 443:443 greta_web > log.txt & disown
 
+#### Backend 
+To build the server side, you need to generate a JKS file, copy it to the resources folder. \
+Rename application.properties.local to application.properties and insert your values where written in this file.\
+You can use ngrok to access the external network
 
 ### Usage
 #### Android
