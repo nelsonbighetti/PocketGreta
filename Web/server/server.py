@@ -6,7 +6,7 @@ import requests
 import json
 import re
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, resources={r"/": {"origins": "postavtezachotpozhaluysta.ru"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 uri = "457f5a38fd2e.ngrok.io"
@@ -14,6 +14,11 @@ uri = "457f5a38fd2e.ngrok.io"
 def removeDangerous(data):
     data = re.sub(r"[{}<>/\"\']", "", data)
     return data
+
+@app.after_request
+def apply_caching(response):
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    return response
 
 @app.errorhandler(404)
 def resource_not_found(e):
